@@ -21,30 +21,67 @@ paths:
       responses:
         '200':
           description: Returns all person
-#    post:
-#      tags:
-#      - Users
-#      description: Echo back the user specified in the request
-#      parameters:
-#      - name: user
-#        description: The user
-#        in: body
-#        required: true
-#        schema:
-#          $ref: '#/definitions/User'
-#      responses:
-#        '200':
-#          description: Echo the request inputs
+    post:
+      tags:
+      - Person
+      description: Add Person
+      parameters:
+      - name: person
+        description: person name
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Person'
+      responses:
+        '200':
+          description: Echo the request inputs
+  /person/{id}:
+    get:
+      tags:
+      - Person
+      description: Get one person
+      responses:
+        '200':
+          description: Returns one person
+    put:
+      tags:
+      - Person
+      description: Update Person
+      parameters:
+      - name: person
+        description: person name
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Person'
+      responses:
+        '200':
+          description: Echo the request inputs
+    delete:
+      tags:
+      - Person
+      description: Delete one person
+      responses:
+        '200':
+          description: Returns nothing
 definitions:
-  User:
+  Person:
     required:
-    - firstname
-    - lastname
+    - id
+    - firstName
+    - lastName
     properties:
-      firstname:
+      id:
+        type: integer
+      firstName:
         type: string
-      lastname:
+      lastName:
         type: string
+      birthdate:
+        type: string
+        format: date
     example:
-      firstname: carmine
-      lastname: d
+      id: 1
+      firstName: "John"
+      lastName: "Doe"
+      birthdate: "2018-11-22"
